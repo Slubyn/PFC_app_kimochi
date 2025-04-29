@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 
-// Componente principal del juego de empatía
+// Componente principal
 const EmpatiaScreen = () => {
   // Estados para gestionar el juego
   const [questions, setQuestions] = useState<any[]>([]); // Lista de preguntas
