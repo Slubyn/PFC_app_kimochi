@@ -24,7 +24,7 @@ const DashboardScreen = () => {
         <Card
           icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
           title="Juego de Empatía"
-          description="Responde a diferentes situaciones emocionales."
+          description="Responde a diferentes situaciones de la vida."
           onPress={() => router.push("/empatia")}
         />
         <Card
