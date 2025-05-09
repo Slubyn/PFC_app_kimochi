@@ -1,127 +1,116 @@
-// app/(tabs)/dashboard.tsx
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Dimensions,
-} from "react-native";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { router } from "expo-router";
 
-const DashboardScreen = () => {
-  const router = useRouter();
-
+export default function WelcomeScreen() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Bienvenido a Kimochi</Text>
+    <View style={styles.container}>
+      {/* Logo y nombre de la app */}
+      <View style={styles.topSection}>
+        <Image
+          source={require("../../assets/images/ositoInicio.png")} // Coloca tu logo aquí
+          style={styles.logo}
+          resizeMode="contain"
+        />
+        <Text style={styles.appName}>Kimochi</Text>
+        <Text style={styles.slogan}>Emotional Wellness</Text>
       </View>
 
-      <View style={styles.cardsContainer}>
-        <Card
-          icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
-          title="Juego de Empatía"
-          description="Responde a diferentes situaciones de la vida."
-          onPress={() => router.push("/empatia")}
-        />
-        <Card
-          icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
-          title="Recompensas"
-          description="Gana insignias y recompensas por tu progreso."
-          // onPress={() => router.push('/rewards')}
-        />
-        <Card
-          icon={<FontAwesome5 name="lightbulb" size={40} color="#6a1b9a" />}
-          title="Consejos Motivacionales"
-          description="Obtén un consejo para tu día."
-          // onPress={() => router.push('/adviceapi')}
-        />
-      </View>
-    </ScrollView>
-  );
-};
+      {/* Sección inferior con fondo amarillo */}
+      <View style={styles.bottomSection}>
+        <Text style={styles.welcomeTitle}>Welcome</Text>
+        <Text style={styles.welcomeText}>
+          Mejora la inteligencia emocional de forma divertida y adaptada a ti.
+        </Text>
 
-const Card = ({ icon, title, description, onPress }: any) => (
-  <TouchableOpacity style={styles.card} onPress={onPress}>
-    {icon}
-    <Text style={styles.cardTitle}>{title}</Text>
-    <Text style={styles.cardText}>{description}</Text>
-    <View style={styles.cardButton}>
-      <Text style={styles.buttonText}>Ir</Text>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={styles.signInButton}
+            onPress={() => router.push("/login")}
+          >
+            <Text style={styles.signInText}>Sign In</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.signUpButton}
+            onPress={() => router.push("/register")}
+          >
+            <Text style={styles.signUpText}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
-  </TouchableOpacity>
-);
-
-const { width } = Dimensions.get("window");
-const isTablet = width > 600;
-
+  );
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
   },
-  header: {
-    marginBottom: 30,
+  topSection: {
+    flex: 1.5,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 60,
   },
-  title: {
-    textAlign: "center",
-    fontSize: isTablet ? 32 : 24,
-    fontWeight: "bold",
-    color: "#6a1b9a",
-    marginTop: 10,
-  },
-  weatherBox: {
-    alignItems: "flex-end",
+  logo: {
+    width: 100,
+    height: 100,
     marginBottom: 10,
   },
-  weatherTitle: {
+  appName: {
+    fontSize: 28,
     fontWeight: "bold",
+    color: "#000",
+  },
+  slogan: {
     fontSize: 14,
+    color: "#888",
+    marginTop: 4,
   },
-  weatherInfo: {
-    fontSize: 13,
-  },
-  errorText: {
-    color: "red",
-  },
-  cardsContainer: {
-    gap: 20,
-  },
-  card: {
-    backgroundColor: "#f4f4f4",
-    padding: isTablet ? 30 : 20,
-    borderRadius: 15,
+  bottomSection: {
+    flex: 1,
+    backgroundColor: "#FFB800",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    padding: 30,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 5,
-    elevation: 5,
+    justifyContent: "center",
   },
-  cardTitle: {
-    fontSize: isTablet ? 24 : 18,
+  welcomeTitle: {
+    fontSize: 24,
     fontWeight: "bold",
-    marginTop: 10,
+    marginBottom: 10,
+    color: "#000",
   },
-  cardText: {
-    fontSize: isTablet ? 18 : 14,
+  welcomeText: {
     textAlign: "center",
-    marginVertical: 10,
+    color: "#333",
+    marginBottom: 30,
   },
-  cardButton: {
-    backgroundColor: "#6a1b9a",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
+  buttonRow: {
+    flexDirection: "row",
+    gap: 12,
   },
-  buttonText: {
-    color: "#fff",
+  signInButton: {
+    backgroundColor: "#000",
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  signInText: {
+    color: "#FFF",
+    fontWeight: "bold",
+  },
+  signUpButton: {
+    backgroundColor: "#FFF",
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 25,
+  },
+  signUpText: {
+    color: "#000",
     fontWeight: "bold",
   },
 });
-
-export default DashboardScreen;

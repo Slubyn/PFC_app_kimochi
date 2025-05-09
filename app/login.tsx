@@ -15,12 +15,15 @@ export default function LoginScreen() {
     <View style={styles.container}>
       {/* Parte superior amarilla */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()}>
-          <Text style={styles.backArrow}>←</Text>
+        {/* Botón Register */}
+        <TouchableOpacity
+          onPress={() => router.push("/register")}
+          style={styles.registerButton}
+        >
+          <Text style={styles.register}>Register</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push("/(tabs)")}>
-          <Text style={styles.register}>Index</Text>
-        </TouchableOpacity>
+
+        {/* Título y subtítulo */}
         <Text style={styles.title}>Sign In</Text>
         <Text style={styles.subtitle}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor
@@ -50,13 +53,11 @@ export default function LoginScreen() {
         <TouchableOpacity style={styles.socialButton}>
           <FontAwesome name="google" size={20} color="#EA4335" />
           <Text style={styles.socialText}>Continue with Google</Text>
-          <Text style={styles.arrow}>→</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.socialButton}>
           <FontAwesome name="facebook" size={20} color="#1877F2" />
           <Text style={styles.socialText}>Continue with Facebook</Text>
-          <Text style={styles.arrow}>→</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -65,6 +66,10 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
+  buttonRow: {
+    flexDirection: "column",
+    gap: 12,
+  },
   header: {
     backgroundColor: "#FFB800",
     paddingTop: 60,
@@ -74,8 +79,22 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
   },
   backArrow: { fontSize: 20 },
-  register: { position: "absolute", right: 20, top: 60, fontWeight: "bold" },
-  title: { fontSize: 28, fontWeight: "bold", marginTop: 20 },
+  registerButton: {
+    position: "absolute",
+    top: 75,
+    right: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    zIndex: 10, // Asegura que esté por encima
+  },
+  register: {
+    // flex: 1,
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "#000",
+  },
+
+  title: { top: -10, fontSize: 28, fontWeight: "bold", marginTop: 2 },
   subtitle: { marginTop: 10, color: "#333" },
   form: { paddingHorizontal: 20, marginTop: 30 },
   input: {
