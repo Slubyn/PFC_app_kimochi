@@ -22,24 +22,34 @@ export default function RegisterScreen() {
 
       {/* Formulario */}
       <View style={styles.form}>
-        <TextInput placeholder="Nombre completo" style={styles.input} />
+        <TextInput
+          placeholder="Nombre completo"
+          style={styles.input}
+          placeholderTextColor="#555"
+        />
         <TextInput
           placeholder="Correo electrónico"
           style={styles.input}
           keyboardType="email-address"
+          placeholderTextColor="#555"
         />
         <TextInput
           placeholder="Contraseña"
           style={styles.input}
           secureTextEntry
+          placeholderTextColor="#555"
         />
         <TextInput
           placeholder="Confirmar contraseña"
           style={styles.input}
           secureTextEntry
+          placeholderTextColor="#555"
         />
 
-        <TouchableOpacity style={styles.registerButton}>
+        <TouchableOpacity
+          style={styles.registerButton}
+          onPress={() => router.replace("/(tabs)/dashboard")}
+        >
           <Text style={styles.registerText}>Crear cuenta</Text>
         </TouchableOpacity>
       </View>
@@ -47,7 +57,7 @@ export default function RegisterScreen() {
       {/* Opción de volver al login */}
       <View style={styles.footer}>
         <Text>¿Ya tienes cuenta?</Text>
-        <TouchableOpacity onPress={() => router.push("/login")}>
+        <TouchableOpacity onPress={() => router.replace("/login")}>
           <Text style={styles.loginLink}> Inicia sesión</Text>
         </TouchableOpacity>
       </View>
